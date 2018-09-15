@@ -1,4 +1,4 @@
-package sample;
+package Login;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -31,10 +31,12 @@ public class Main extends Application {
         grid.setPadding(new Insets(25, 25, 25, 25));
 
         Scene scene = new Scene(grid, 300, 275);
+        scene.getStylesheets().add
+                (Main.class.getResource("Login.css").toExternalForm());
         primaryStage.setScene(scene);
 
         Text scenetitle = new Text("Welcome");
-        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        scenetitle.setId("welcome-text");
         grid.add(scenetitle, 0, 0, 2, 1);
 
         Label userName = new Label("User Name:");
@@ -58,12 +60,9 @@ public class Main extends Application {
         final Text actiontarget = new Text();
         grid.add(actiontarget, 1, 6);
 
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                actiontarget.setFill(Color.FIREBRICK);
-                actiontarget.setText("Sign in button pressed.");
-            }
+        btn.setOnAction(event -> {
+            actiontarget.setId("actiontarget");
+            actiontarget.setText("Sign in button pressed.");
         });
 
         primaryStage.show();
